@@ -1,0 +1,70 @@
+<idea-plugin>
+    <!--    插件ID 保持唯一-->
+    <id>com.knownsec.jarvis</id>
+    <!--    插件名称-->
+    <name>Jarvis</name>
+    <!--    版本号-->
+    <version>1.0</version>
+    <!--    作者信息-->
+    <vendor email="1003941268@qq.com" url="https://knownsec.com">zouyx</vendor>
+    <!--    其他相关依赖-->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.intellij.plugins.markdown</depends>
+
+    <!--插件支持的最低版本号-->
+    <!--    <idea-version since-build="173.0"/>-->
+    <!--扩展内容¬-->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Jarvis" anchor="right" icon="/icons/toolWindow.svg" canCloseContents="true"
+                    factoryClass="com.knownsec.jarvis.MyToolWindowFactory"/>
+        <applicationConfigurable parentId="tools" instance="com.knownsec.jarvis.settings.OpenAISettingsPanel"
+                                 id="com.knownsec.jarvis.settings.OpenAISettings"
+                                 displayName="Jarvis"/>
+        <!--    <groupConfigurable id="com.knownsec.jarvis.settings.OpenAISettings" weight="-10"-->
+        <!--                       displayNameKey="OpenAI"-->
+        <!--                       descriptionKey="Here are the relevant settings for OpenAI"/>-->
+        <!--        <applicationConfigurable parentId="com.knownsec.jarvis.settings.OpenAISettings"-->
+        <!--                                 instance="com.knownsec.jarvis.settings.ChatGPTSettingsPanel"-->
+        <!--                                 id="com.knownsec.jarvis.settings.ChatGPT"-->
+        <!--                                 displayName="ChatGPT"/>-->
+        <applicationConfigurable parentId="com.knownsec.jarvis.settings.OpenAISettings"
+                                 instance="com.knownsec.jarvis.settings.GPT3_35_TurboPanel"
+                                 id="com.knownsec.jarvis.settings.GPT3-3.5-Turbo"
+                                 displayName="Config"/>
+        <!--        <applicationConfigurable parentId="com.knownsec.jarvis.settings.OpenAISettings"-->
+        <!--                                 instance="com.knownsec.jarvis.settings.CustomActionsPanel"-->
+        <!--                                 id="com.knownsec.jarvis.settings.commandActions"-->
+        <!--                                 displayName="Custom Actions"/>-->
+        <applicationService serviceImplementation="com.knownsec.jarvis.settings.OpenAISettingsState"/>
+        <applicationService serviceImplementation="com.knownsec.jarvis.core.TokenManager"/>
+        <projectService serviceImplementation="com.knownsec.jarvis.core.ConversationManager"/>
+        <projectService serviceImplementation="com.knownsec.jarvis.core.SendAction"/>
+        <projectService serviceImplementation="com.knownsec.jarvis.ChatGPTHandler"/>
+        <projectService serviceImplementation="com.knownsec.jarvis.GPT35TurboHandler"/>
+        <postStartupActivity implementation="com.knownsec.jarvis.core.StartUpActivity"/>
+        <iconMapper mappingFile="ChatGPTIconMappings.json"/>
+    </extensions>
+    <!--    菜单动作-->
+    <actions>
+        <group id="ChatGPT" text="Help with Jarvis"
+               description="Describe what you would like Jarvis to do for you">
+            <action id="WrongAction" icon="/icons/toolWindow.svg"
+                    class="com.knownsec.jarvis.ui.action.editor.BugAction"/>
+            <action id="OptimizeAction" class="com.knownsec.jarvis.ui.action.editor.OptimizeAction"
+                    icon="/icons/toolWindow.svg"/>
+            <action id="CustomAction" icon="/icons/toolWindow.svg"
+                    class="com.knownsec.jarvis.ui.action.editor.CustomAction">
+                <keyboard-shortcut keymap="$default" first-keystroke="control shift Q"/>
+            </action>
+            <separator/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <separator/>
+        </group>
+        <action id="HelloJarvis" class="com.knownsec.jarvis.HelloJarvis" text="Call Up Jarvis"
+                description="Wake up Jarvis">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta Q"/>
+        </action>
+    </actions>
+</idea-plugin>
