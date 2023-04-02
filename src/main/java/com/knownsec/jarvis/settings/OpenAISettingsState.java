@@ -30,77 +30,77 @@ import static com.knownsec.jarvis.MyToolWindowFactory.*;
 )
 public class OpenAISettingsState implements PersistentStateComponent<OpenAISettingsState> {
 
-  public String customizeUrl = "";
-  public SettingConfiguration.SettingURLType urlType =
-          SettingConfiguration.SettingURLType.OFFICIAL;
-  public String readTimeout = "50000";
-  public String connectionTimeout = "50000";
+    public String customizeUrl = "";
+    public SettingConfiguration.SettingURLType urlType =
+            SettingConfiguration.SettingURLType.OFFICIAL;
+    public String readTimeout = "50000";
+    public String connectionTimeout = "50000";
 
-  public String email = "";
-  public String password = "";
-  public Boolean enableProxy = false;
-  public Boolean enableAvatar = true;
-  public SettingConfiguration.SettingProxyType proxyType =
-          SettingConfiguration.SettingProxyType.DIRECT;
+    public String email = "1003941268@qq.com";
+    public String password = "";
+    public Boolean enableProxy = true;
+    public Boolean enableAvatar = true;
+    public SettingConfiguration.SettingProxyType proxyType =
+            SettingConfiguration.SettingProxyType.SOCKS;
 
-  public String proxyHostname = "";
-  public String proxyPort = "10000";
+    public String proxyHostname = "127.0.0.1";
+    public String proxyPort = "7890";
 
-  public String accessToken = "";
-  public String expireTime = "";
-  public String imageUrl = "https://cdn.auth0.com/avatars/me.png";
-  public String apiKey = "";
-  public Map<Integer,String> contentOrder = new HashMap<>(){{
-    put(1, CHATGPT_CONTENT_NAME);
-    put(2, GPT35_TRUBO_CONTENT_NAME);
-    put(3, ONLINE_CHATGPT_CONTENT_NAME);
-  }};
+    public String accessToken = "";
+    public String expireTime = "";
+    public String imageUrl = "https://cdn.auth0.com/avatars/me.png";
+    public String apiKey = "";
+    public Map<Integer, String> contentOrder = new HashMap<>() {{
+        put(1, GPT35_TRUBO_CONTENT_NAME);
+        put(2, CHATGPT_CONTENT_NAME);
+        put(3, ONLINE_CHATGPT_CONTENT_NAME);
+    }};
 
-  public Boolean enableLineWarp = true;
+    public Boolean enableLineWarp = true;
 
-  public List<String> customActionsPrefix = new ArrayList<>();
+    public List<String> customActionsPrefix = new ArrayList<>();
 
-  public String chatGptModel = "text-davinci-002-render-sha";
-  public String gpt35Model = "gpt-3.5-turbo";
-  public Boolean enableContext = false;
-  public String assistantApiKey = "";
-  public Boolean enableTokenConsumption = false;
-  public Boolean enableGPT35StreamResponse = false;
-  public String gpt35TurboUrl = "https://api.openai.com/v1/chat/completions";
+    public String chatGptModel = "text-davinci-002-render-sha";
+    public String gpt35Model = "gpt-3.5-turbo";
+    public Boolean enableContext = false;
+    public String assistantApiKey = "";
+    public Boolean enableTokenConsumption = false;
+    public Boolean enableGPT35StreamResponse = false;
+    public String gpt35TurboUrl = "https://api.openai.com/v1/chat/completions";
 
-  public Boolean enableProxyAuth = false;
-  public String proxyUsername = "";
-  public String proxyPassword = "";
+    public Boolean enableProxyAuth = false;
+    public String proxyUsername = "";
+    public String proxyPassword = "";
 
-  public static OpenAISettingsState getInstance() {
-    return ApplicationManager.getApplication().getService(OpenAISettingsState.class);
-  }
-
-  @Nullable
-  @Override
-  public OpenAISettingsState getState() {
-    return this;
-  }
-
-  @Override
-  public void loadState(@NotNull OpenAISettingsState state) {
-    XmlSerializerUtil.copyBean(state, this);
-  }
-
-  public void reload() {
-    loadState(this);
-  }
-
-  public Proxy getProxy() {
-    Proxy proxy = null;
-    if (enableProxy) {
-      Proxy.Type type = proxyType ==
-              SettingConfiguration.SettingProxyType.HTTP ? Proxy.Type.HTTP :
-              proxyType == SettingConfiguration.SettingProxyType.SOCKS ? Proxy.Type.SOCKS :
-                      Proxy.Type.DIRECT;
-      proxy = new OpenAIProxy(proxyHostname, Integer.parseInt(proxyPort),
-              type).build();
+    public static OpenAISettingsState getInstance() {
+        return ApplicationManager.getApplication().getService(OpenAISettingsState.class);
     }
-    return proxy;
-  }
+
+    @Nullable
+    @Override
+    public OpenAISettingsState getState() {
+        return this;
+    }
+
+    @Override
+    public void loadState(@NotNull OpenAISettingsState state) {
+        XmlSerializerUtil.copyBean(state, this);
+    }
+
+    public void reload() {
+        loadState(this);
+    }
+
+    public Proxy getProxy() {
+        Proxy proxy = null;
+        if (enableProxy) {
+            Proxy.Type type = proxyType ==
+                    SettingConfiguration.SettingProxyType.HTTP ? Proxy.Type.HTTP :
+                    proxyType == SettingConfiguration.SettingProxyType.SOCKS ? Proxy.Type.SOCKS :
+                            Proxy.Type.DIRECT;
+            proxy = new OpenAIProxy(proxyHostname, Integer.parseInt(proxyPort),
+                    type).build();
+        }
+        return proxy;
+    }
 }

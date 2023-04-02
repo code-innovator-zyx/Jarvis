@@ -25,9 +25,9 @@ public class MyToolWindowFactory implements ToolWindowFactory {
 
     public static final Key ACTIVE_CONTENT = Key.create("ActiveContent");
 
-    public static final String CHATGPT_CONTENT_NAME = "ChatGPT";
-    public static final String GPT35_TRUBO_CONTENT_NAME = "GPT-3.5-Turbo";
-    public static final String ONLINE_CHATGPT_CONTENT_NAME = "Online ChatGPT";
+    public static final String CHATGPT_CONTENT_NAME = "Jarvis I";
+    public static final String GPT35_TRUBO_CONTENT_NAME = "Jarvis 3.5";
+    public static final String ONLINE_CHATGPT_CONTENT_NAME = "Jarvis online";
 
     /**
      * Create the tool window content.

@@ -18,6 +18,6 @@ public class GitHubAction extends DumbAwareAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        BrowserUtil.browse("https://github.com/obiscr");
+        BrowserUtil.browse("https://github.com/iron-man-zyx");
     }
 }

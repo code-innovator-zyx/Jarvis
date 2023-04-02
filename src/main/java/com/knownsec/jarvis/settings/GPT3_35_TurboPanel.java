@@ -87,11 +87,11 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
 
     private void createUIComponents() {
         apiKeyTitledBorderBox = new JPanel(new BorderLayout());
-        TitledSeparator tsUrl = new TitledSeparator("API Key Settings");
+        TitledSeparator tsUrl = new TitledSeparator("API Key");
         apiKeyTitledBorderBox.add(tsUrl,BorderLayout.CENTER);
 
         modelTitledBorderBox = new JPanel(new BorderLayout());
-        TitledSeparator mdUrl = new TitledSeparator("Other Settings");
+        TitledSeparator mdUrl = new TitledSeparator("Others");
         modelTitledBorderBox.add(mdUrl,BorderLayout.CENTER);
     }
 

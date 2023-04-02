@@ -75,7 +75,7 @@ public class CustomActionsPanel implements Configurable, Disposable {
 
     @Override
     public @Nullable JComponent createComponent() {
-        myModel.setColumnInfos(new ColumnInfo[]{new ColumnInfo<String, String>(""){
+        myModel.setColumnInfos(new ColumnInfo[]{new ColumnInfo<String, String>("") {
 
             @Override
             public @Nullable String valueOf(String s) {
@@ -117,7 +117,8 @@ public class CustomActionsPanel implements Configurable, Disposable {
 
         myTable.setDefaultRenderer(Object.class, new ValidatingTableCellRendererWrapper(new ColoredTableCellRenderer() {
             {
-                setIpad(new JBInsets(0, 0, 0, 0));}
+                setIpad(new JBInsets(0, 0, 0, 0));
+            }
 
             @Override
             protected void customizeCellRenderer(@NotNull JTable table, @Nullable Object value, boolean selected, boolean hasFocus, int row, int column) {
@@ -164,7 +165,7 @@ public class CustomActionsPanel implements Configurable, Disposable {
     private void createUIComponents() {
         customActionsTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator tsUrl = new TitledSeparator("Custom Actions Settings");
-        customActionsTitledBorderBox.add(tsUrl,BorderLayout.CENTER);
+        customActionsTitledBorderBox.add(tsUrl, BorderLayout.CENTER);
 
         myMainPanel = new JPanel(new BorderLayout());
     }

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class StringUtil extends com.intellij.openapi.util.text.StringUtil {
 
+    // 校验字符是否是一个数字类型的
     public static boolean isNumber(String s) {
         if (s == null) {
             return false;

@@ -8,17 +8,18 @@ import com.knownsec.jarvis.util.HtmlUtil;
 public class Constant {
 
     public static final String CHATGPT_CONTENT =
-                    "**Important tip**: \n\n<br />"+
-                    "Currently using a third-party proxy service. will be unstable. And there is a limit on the number of requests per hour. <br />" +
-                            "**Please don't give me bad reviews. I have been working hard to provide you with a better service.**\n\n<br />" +
-                    "**Getting Started**: \n\n<br />" +
-                    "Please following this to configure the ChatGPT: [https://chatgpt.en.obiscr.com/settings/chatgpt-settings/](https://chatgpt.en.obiscr.com/settings/chatgpt-settings/) \n\n<br />";
+                    "**Hello Boss**: \n\n<br />"+
+                    "贾维斯一代已加载完成，很高兴为您服务. <br />" +
+                            "**你有任何问题都可以直接问我.**\n\n<br />" +
+                    "**fuck**: \n\n<br />" +
+                    "如果你想要了解我的原理: 可以参考chatGpt   😋你懂得 \n\n<br />";
 
     public static final String GPT35_TURBO_CONTENT =
-            "**Important tip**: \n\n<br />"+
-                    "This model is the official GPT 3.5 Turbo model. \n\n<br />" +
-                    "**Instructions**: \n\n<br />" +
-                    "Please following this to configure the GPT 3.5 Turbo: [https://chatgpt.en.obiscr.com/settings/gpt-3.5-trubo-settings/](https://chatgpt.en.obiscr.com/settings/gpt-3.5-trubo-settings/) \n\n<br />";
+            "**Hello Boss**: \n\n<br />"+
+                    "贾维斯3.5已加载完成，很高兴为您服务. <br />" +
+                    "**你有任何问题都可以直接问我.**\n\n<br />" +
+                    "**fuck**: \n\n<br />" +
+                    "如果你想要了解我的原理:  可以参考chatGpt  😋你懂得\n\n<br />";
 
 
     public static String getChatGPTContent() {

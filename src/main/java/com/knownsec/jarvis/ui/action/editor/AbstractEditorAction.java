@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileTypes.NativeFileType;
+import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.NlsActions;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
@@ -13,6 +14,8 @@ import com.knownsec.jarvis.ui.BrowserContent;
 import com.knownsec.jarvis.ui.MainPanel;
 import com.knownsec.jarvis.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
+
+import static com.knownsec.jarvis.util.JarvisUtil.Notify;
 
 import java.util.function.Supplier;
 
@@ -39,7 +42,11 @@ public abstract class AbstractEditorAction extends AnAction {
 
         // Check the toolWindow is active
         ToolWindow chatGPT = ToolWindowManager.getInstance(e.getProject()).getToolWindow("ChatGPT");
-        assert chatGPT != null;
+//        assert chatGPT != null;
+        if (chatGPT == null) {
+            Notify("我暂时无法为您提供服务，您还没有激活贾维斯系统", MessageType.WARNING);
+            return;
+        }
         if (!chatGPT.isActive()) {
             chatGPT.activate(null);
         }

@@ -50,8 +50,7 @@ public class SendAction extends AnAction {
                     Notifications.Bus.notify(
                             new Notification(ChatGPTBundle.message("group.id"),
                                     "Wrong setting",
-                                    "Please configure the access token or login in at first.\n" +
-                                            "Open Setting/Preference - Tools - OpenAI - ChatGPT, and login.",
+                                    "请先进行一代登录或者设置令牌.",
                                     NotificationType.ERROR));
                     return false;
                 }
@@ -70,7 +69,7 @@ public class SendAction extends AnAction {
                 Notifications.Bus.notify(
                         new Notification(ChatGPTBundle.message("group.id"),
                                 "Wrong setting",
-                                "Please configure a API Key first.",
+                                "你还没设置令牌",
                                 NotificationType.ERROR));
                 return false;
             }

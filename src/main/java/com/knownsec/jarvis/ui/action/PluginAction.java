@@ -18,6 +18,6 @@ public class PluginAction extends DumbAwareAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        BrowserUtil.browse("https://plugins.jetbrains.com/organizations/obiscr");
+        BrowserUtil.browse("https://plugins.jetbrains.com/organizations/com_knownsec_jarvis");
     }
 }

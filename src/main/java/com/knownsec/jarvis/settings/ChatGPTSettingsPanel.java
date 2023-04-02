@@ -74,7 +74,7 @@ public class ChatGPTSettingsPanel implements Configurable, Disposable {
         loginButton.addActionListener(e -> {
             if (StringUtil.isEmpty(emailField.getText()) || StringUtil.isEmpty(passwordField.getText())) {
                 MessageDialogBuilder.yesNo("No login details provided!", "To login, the email and password are required, " +
-                        "please configure it at first.")
+                                "please configure it at first.")
                         .yesText("Got it")
                         .noText("Close").ask(myMainPanel);
                 return;
@@ -169,7 +169,7 @@ public class ChatGPTSettingsPanel implements Configurable, Disposable {
 
         assert selected != null;
 
-        return (SettingConfiguration.SettingURLType)selected.getClientProperty("value");
+        return (SettingConfiguration.SettingURLType) selected.getClientProperty("value");
     }
 
     private static void register(@NotNull JBRadioButton choice, @NotNull SettingConfiguration.SettingURLType value) {
@@ -188,11 +188,11 @@ public class ChatGPTSettingsPanel implements Configurable, Disposable {
     private void createUIComponents() {
         urlTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator tsUrl = new TitledSeparator(ChatGPTBundle.message("ui.setting.url.title"));
-        urlTitledBorderBox.add(tsUrl,BorderLayout.CENTER);
+        urlTitledBorderBox.add(tsUrl, BorderLayout.CENTER);
 
         modelTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator mdUrl = new TitledSeparator("Model Settings");
-        modelTitledBorderBox.add(mdUrl,BorderLayout.CENTER);
+        modelTitledBorderBox.add(mdUrl, BorderLayout.CENTER);
     }
 
     private void initHelp() {

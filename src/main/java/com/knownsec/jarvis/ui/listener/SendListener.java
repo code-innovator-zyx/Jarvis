@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * @author zouyx
  */
-public class SendListener implements ActionListener,KeyListener {
+public class SendListener implements ActionListener, KeyListener {
 
     private final MainPanel mainPanel;
 
@@ -33,7 +33,7 @@ public class SendListener implements ActionListener,KeyListener {
         String text = mainPanel.getSearchTextArea().
                 getTextArea().getText();
         SendAction sendAction = mainPanel.getProject().getService(SendAction.class);
-        sendAction.doActionPerformed(mainPanel,text);
+        sendAction.doActionPerformed(mainPanel, text);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SendListener implements ActionListener,KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ENTER && !e.isControlDown() && !e.isShiftDown()){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER && !e.isControlDown() && !e.isShiftDown()) {
             e.consume();
             mainPanel.getButton().doClick();
         }

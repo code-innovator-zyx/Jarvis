@@ -28,21 +28,22 @@ import java.awt.event.MouseEvent;
 public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implements NullableComponent {
     private final JPanel myList = new JPanel(new VerticalLayout(JBUI.scale(10)));
     private final MyScrollPane myScrollPane = new MyScrollPane(myList, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                                      ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     private int myScrollValue = 0;
 
     private final MyAdjustmentListener scrollListener = new MyAdjustmentListener();
     private final MessageComponent chatGPTExplanation =
-            new MessageComponent(Constant.getChatGPTContent(),false);
+            new MessageComponent(Constant.getChatGPTContent(), false);
     private final MessageComponent gpt35TurboModelExplanation =
-            new MessageComponent(Constant.getGpt35TurboContent(),false);
+            new MessageComponent(Constant.getGpt35TurboContent(), false);
     private final MessageComponent tips =
-            new MessageComponent("Type anything to ask me.",false);
+            new MessageComponent("很高兴为您服务.", false);
     private final MessageComponent mustRead =
-            new MessageComponent("Must Read: <a href='https://chatgpt.en.obiscr.com/getting-started/'>https://chatgpt.en.obiscr.com/getting-started/</a><br />&#20351;&#29992;&#24517;&#35835;: <a href='https://chatgpt.cn.obiscr.com/getting-started/'>https://chatgpt.cn.obiscr.com/getting-started/</a>",false);
+            new MessageComponent("顺便问一下，隔壁小朋友都训练到五代了，我啥时候才能跟上大部队？", false);
     private JBTextField systemRole;
-    private static final String systemRoleText = "You are a helpful language assistant";
+    private static final String systemRoleText = "你想让我扮演一个什么样的角色？我无所不能......🐂";
     private JsonArray messages = new JsonArray();
+
     public MessageGroupComponent(@NotNull Project project, boolean isChatGPT) {
         setBorder(JBUI.Borders.empty(10, 10, 10, 0));
         setLayout(new BorderLayout(JBUI.scale(7), 0));
@@ -53,16 +54,16 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
         mainPanel.setBorder(JBUI.Borders.emptyLeft(8));
 
         if (!isChatGPT) {
-            JPanel panel = new NonOpaquePanel(new GridLayout(2,1));
-            panel.add(new JBLabel(" System role: you can direct your assistant and set its behavior"));
+            JPanel panel = new NonOpaquePanel(new GridLayout(2, 1));
+            panel.add(new JBLabel(" 玩角色扮演么😯: 我可以成为任何你想让我成为的角色"));
             systemRole = new JBTextField();
             systemRole.getEmptyText().setText(systemRoleText);
             panel.add(systemRole);
-            panel.setBorder(JBUI.Borders.empty(0,8,10,10));
-            add(panel,BorderLayout.NORTH);
+            panel.setBorder(JBUI.Borders.empty(0, 8, 10, 10));
+            add(panel, BorderLayout.NORTH);
         }
 
-        add(mainPanel,BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
 
         JBLabel myTitle = new JBLabel("Conversation");
         myTitle.setForeground(JBColor.namedColor("Label.infoForeground", new JBColor(Gray.x80, Gray.x8C)));
@@ -70,7 +71,7 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setOpaque(false);
-        panel.setBorder(JBUI.Borders.empty(0,10,10,0));
+        panel.setBorder(JBUI.Borders.empty(0, 10, 10, 0));
 
         panel.add(myTitle, BorderLayout.WEST);
 
@@ -108,8 +109,7 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
             if (myScrollValue == 0 && value > 0 || myScrollValue > 0 && value == 0) {
                 myScrollValue = value;
                 repaint();
-            }
-            else {
+            } else {
                 myScrollValue = value;
             }
         });
@@ -144,9 +144,9 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
     public void updateLayout() {
         LayoutManager layout = myList.getLayout();
         int componentCount = myList.getComponentCount();
-        for (int i = 0 ; i< componentCount ; i++) {
+        for (int i = 0; i < componentCount; i++) {
             layout.removeLayoutComponent(myList.getComponent(i));
-            layout.addLayoutComponent(null,myList.getComponent(i));
+            layout.addLayoutComponent(null, myList.getComponent(i));
         }
     }
 
@@ -165,7 +165,7 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
     public boolean isVisible() {
         if (super.isVisible()) {
             int count = myList.getComponentCount();
-            for (int i = 0 ; i < count ; i++) {
+            for (int i = 0; i < count; i++) {
                 if (myList.getComponent(i).isVisible()) {
                     return true;
                 }

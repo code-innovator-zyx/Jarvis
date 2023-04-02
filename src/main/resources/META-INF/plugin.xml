@@ -6,7 +6,7 @@
     <!--    版本号-->
     <version>1.0</version>
     <!--    作者信息-->
-    <vendor email="1003941268@qq.com" url="https://knownsec.com">zouyx</vendor>
+    <vendor email="1003941268@qq.com" url="https://own.com">zouyx</vendor>
     <!--    其他相关依赖-->
     <depends>com.intellij.modules.platform</depends>
     <depends>org.intellij.plugins.markdown</depends>
@@ -47,7 +47,7 @@
     </extensions>
     <!--    菜单动作-->
     <actions>
-        <group id="ChatGPT" text="Help with Jarvis"
+        <group id="Jarvis" text="Help with Jarvis"
                description="Describe what you would like Jarvis to do for you">
             <action id="WrongAction" icon="/icons/toolWindow.svg"
                     class="com.knownsec.jarvis.ui.action.editor.BugAction"/>
