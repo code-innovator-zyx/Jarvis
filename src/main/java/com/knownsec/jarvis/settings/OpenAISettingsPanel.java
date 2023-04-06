@@ -117,11 +117,7 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
         thirdCombobox.setModel(new DefaultComboBoxModel<>(comboboxItemsString));
 
         refreshButton.addActionListener(e -> {
-            String apiKey = checkKeyExists();
-            if (StringUtil.isEmpty(apiKey)) {
-                return;
-            }
-            OpenAIUtil.refreshGranted(apiKey, myMainPanel);
+            OpenAIUtil.refreshGranted(myMainPanel);
         });
 
         createAPIKeyButton.addActionListener(e -> {
@@ -129,12 +125,12 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
             if (StringUtil.isEmpty(apiKey)) {
                 return;
             }
-            OpenAIUtil.createAPIKey(apiKey,myMainPanel);
+            OpenAIUtil.createAPIKey(apiKey, myMainPanel);
         });
     }
 
     private String checkKeyExists() {
-        if (StringUtil.isNotEmpty(assistantApiKey.getText())){
+        if (StringUtil.isNotEmpty(assistantApiKey.getText())) {
             return assistantApiKey.getText();
         }
         if (StringUtil.isNotEmpty(OpenAISettingsState.getInstance().apiKey)) {
@@ -191,27 +187,27 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
         OpenAISettingsState state = OpenAISettingsState.getInstance();
 
         // If you change the order, you need to restart the IDE to take effect
-        needRestart = !StringUtil.equals(state.contentOrder.get(1), (String)firstCombobox.getSelectedItem())||
-                !StringUtil.equals(state.contentOrder.get(2), (String)secondCombobox.getSelectedItem())||
-                !StringUtil.equals(state.contentOrder.get(3), (String)thirdCombobox.getSelectedItem()) ||
+        needRestart = !StringUtil.equals(state.contentOrder.get(1), (String) firstCombobox.getSelectedItem()) ||
+                !StringUtil.equals(state.contentOrder.get(2), (String) secondCombobox.getSelectedItem()) ||
+                !StringUtil.equals(state.contentOrder.get(3), (String) thirdCombobox.getSelectedItem()) ||
                 !state.enableLineWarp == enableLineWarpCheckBox.isSelected();
 
         return
                 !StringUtil.equals(state.readTimeout, readTimeoutField.getText()) ||
-                !StringUtil.equals(state.connectionTimeout, connectionTimeoutField.getText()) ||
-                !state.proxyType.equals(getProxyChoice()) ||
-                !state.enableProxy == enableProxyCheckBox.isSelected() ||
-                !state.enableAvatar == enableAvatarCheckBox.isSelected() ||
-                !StringUtil.equals(state.proxyHostname, hostnameField.getText()) ||
-                !StringUtil.equals(state.proxyPort, portField.getValue().toString()) ||
-                !state.enableProxyAuth == enableProxyAuthCheckBox.isSelected() ||
-                !StringUtil.equals(state.proxyUsername, proxyUsernameField.getText()) ||
-                !StringUtil.equals(state.proxyPassword, proxyPasswordField.getText()) ||
-                !StringUtil.equals(state.contentOrder.get(1), (String)firstCombobox.getSelectedItem()) ||
-                !StringUtil.equals(state.contentOrder.get(2), (String)secondCombobox.getSelectedItem()) ||
-                !StringUtil.equals(state.contentOrder.get(3), (String)thirdCombobox.getSelectedItem()) ||
-                !state.enableLineWarp == enableLineWarpCheckBox.isSelected() ||
-                !StringUtil.equals(state.assistantApiKey,assistantApiKey.getText());
+                        !StringUtil.equals(state.connectionTimeout, connectionTimeoutField.getText()) ||
+                        !state.proxyType.equals(getProxyChoice()) ||
+                        !state.enableProxy == enableProxyCheckBox.isSelected() ||
+                        !state.enableAvatar == enableAvatarCheckBox.isSelected() ||
+                        !StringUtil.equals(state.proxyHostname, hostnameField.getText()) ||
+                        !StringUtil.equals(state.proxyPort, portField.getValue().toString()) ||
+                        !state.enableProxyAuth == enableProxyAuthCheckBox.isSelected() ||
+                        !StringUtil.equals(state.proxyUsername, proxyUsernameField.getText()) ||
+                        !StringUtil.equals(state.proxyPassword, proxyPasswordField.getText()) ||
+                        !StringUtil.equals(state.contentOrder.get(1), (String) firstCombobox.getSelectedItem()) ||
+                        !StringUtil.equals(state.contentOrder.get(2), (String) secondCombobox.getSelectedItem()) ||
+                        !StringUtil.equals(state.contentOrder.get(3), (String) thirdCombobox.getSelectedItem()) ||
+                        !state.enableLineWarp == enableLineWarpCheckBox.isSelected() ||
+                        !StringUtil.equals(state.assistantApiKey, assistantApiKey.getText());
     }
 
     @Override
@@ -298,7 +294,7 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
         }
         assert selected != null;
 
-        return (SettingConfiguration.SettingProxyType)selected.getClientProperty("value");
+        return (SettingConfiguration.SettingProxyType) selected.getClientProperty("value");
     }
 
     private static void register(@NotNull JBRadioButton choice, @NotNull SettingConfiguration.SettingProxyType value) {
@@ -317,19 +313,19 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
     private void createUIComponents() {
         connectionTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator tsConnection = new TitledSeparator(ChatGPTBundle.message("ui.setting.connection.title"));
-        connectionTitledBorderBox.add(tsConnection,BorderLayout.CENTER);
+        connectionTitledBorderBox.add(tsConnection, BorderLayout.CENTER);
 
         proxyTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator tsProxy = new TitledSeparator("Proxy Settings");
-        proxyTitledBorderBox.add(tsProxy,BorderLayout.CENTER);
+        proxyTitledBorderBox.add(tsProxy, BorderLayout.CENTER);
 
         contentTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator tsUrl = new TitledSeparator("Tool Window Settings");
-        contentTitledBorderBox.add(tsUrl,BorderLayout.CENTER);
+        contentTitledBorderBox.add(tsUrl, BorderLayout.CENTER);
 
         openaiAssistantTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator oaUrl = new TitledSeparator("OpenAI Assistant");
-        openaiAssistantTitledBorderBox.add(oaUrl,BorderLayout.CENTER);
+        openaiAssistantTitledBorderBox.add(oaUrl, BorderLayout.CENTER);
 
 
         supportPanel = new JPanel(new BorderLayout());

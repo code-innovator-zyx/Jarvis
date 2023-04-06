@@ -12,6 +12,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * @author zouyx
@@ -28,6 +30,10 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
     private JCheckBox enableStreamResponseCheckBox;
     private JLabel tokenLabel;
 
+    private JPanel customizeServerOptions;
+
+    private JCheckBox enableCustomizeGpt35TurboUrlCheckBox;
+
 
     public GPT3_35_TurboPanel() {
         init();
@@ -35,10 +41,21 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
 
     private void init() {
         apiKeyField.getEmptyText().setText("Your API Key, find it in: https://platform.openai.com/account/api-keys");
+        ItemListener proxyTypeChangedListener = e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                enableCustomizeServerOptions(true);
+            } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                enableCustomizeServerOptions(false);
+            }
+        };
+        enableCustomizeGpt35TurboUrlCheckBox.addItemListener(proxyTypeChangedListener);
+        enableCustomizeServerOptions(false);
         initHelp();
     }
 
-
+    private void enableCustomizeServerOptions(boolean enabled) {
+        UIUtil.setEnabled(customizeServerOptions, enabled, true);
+    }
 
     @Override
     public void reset() {
@@ -60,10 +77,10 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
         OpenAISettingsState state = OpenAISettingsState.getInstance();
 
         return !state.apiKey.equals(apiKeyField.getText()) ||
-               !state.gpt35Model.equals(comboCombobox.getSelectedItem().toString()) ||
-               !state.enableContext == enableContextCheckBox.isSelected() ||
-               !state.enableTokenConsumption == enableTokenConsumptionCheckBox.isSelected() ||
-               !state.enableGPT35StreamResponse == enableStreamResponseCheckBox.isSelected();
+                !state.gpt35Model.equals(comboCombobox.getSelectedItem().toString()) ||
+                !state.enableContext == enableContextCheckBox.isSelected() ||
+                !state.enableTokenConsumption == enableTokenConsumptionCheckBox.isSelected() ||
+                !state.enableGPT35StreamResponse == enableStreamResponseCheckBox.isSelected();
     }
 
     @Override
@@ -88,11 +105,11 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
     private void createUIComponents() {
         apiKeyTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator tsUrl = new TitledSeparator("API Key");
-        apiKeyTitledBorderBox.add(tsUrl,BorderLayout.CENTER);
+        apiKeyTitledBorderBox.add(tsUrl, BorderLayout.CENTER);
 
         modelTitledBorderBox = new JPanel(new BorderLayout());
         TitledSeparator mdUrl = new TitledSeparator("Others");
-        modelTitledBorderBox.add(mdUrl,BorderLayout.CENTER);
+        modelTitledBorderBox.add(mdUrl, BorderLayout.CENTER);
     }
 
     private void initHelp() {

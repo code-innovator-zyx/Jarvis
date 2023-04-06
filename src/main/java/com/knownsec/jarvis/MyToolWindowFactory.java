@@ -45,7 +45,8 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         GPT35TurboToolWindow gpt35TurboToolWindow = new GPT35TurboToolWindow(project);
         Content gpt35Turbo = contentFactory.createContent(gpt35TurboToolWindow.getContent(), GPT35_TRUBO_CONTENT_NAME, false);
         gpt35Turbo.setCloseable(false);
-
+        // get input focus by keystroke
+        gpt35TurboToolWindow.registerKeystrokeFocus();
         BrowserToolWindow browserToolWindow = new BrowserToolWindow();
         Content browser = contentFactory.createContent(browserToolWindow.getContent(),
                 ONLINE_CHATGPT_CONTENT_NAME, false);
@@ -54,9 +55,9 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         OpenAISettingsState settingsState = OpenAISettingsState.getInstance();
         Map<Integer, String> contentSort = settingsState.contentOrder;
 
-        for (int i = 0 ; i <= 2 ; i++) {
-            toolWindow.getContentManager().addContent(getContent(contentSort.get(i + 1),chatGpt,
-                    gpt35Turbo,browser), i);
+        for (int i = 0; i <= 2; i++) {
+            toolWindow.getContentManager().addContent(getContent(contentSort.get(i + 1), chatGpt,
+                    gpt35Turbo, browser), i);
         }
 
 
@@ -83,11 +84,11 @@ public class MyToolWindowFactory implements ToolWindowFactory {
             public void selectionChanged(@NotNull ContentManagerEvent event) {
                 String displayName = event.getContent().getDisplayName();
                 if (CHATGPT_CONTENT_NAME.equals(displayName)) {
-                    project.putUserData(ACTIVE_CONTENT,chatGPTToolWindow.getPanel());
+                    project.putUserData(ACTIVE_CONTENT, chatGPTToolWindow.getPanel());
                 } else if (GPT35_TRUBO_CONTENT_NAME.equals(displayName)) {
-                    project.putUserData(ACTIVE_CONTENT,gpt35TurboToolWindow.getPanel());
+                    project.putUserData(ACTIVE_CONTENT, gpt35TurboToolWindow.getPanel());
                 } else if (ONLINE_CHATGPT_CONTENT_NAME.equals(displayName)) {
-                    project.putUserData(ACTIVE_CONTENT,browserToolWindow.getPanel());
+                    project.putUserData(ACTIVE_CONTENT, browserToolWindow.getPanel());
                 }
             }
         });
@@ -100,9 +101,9 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         toolWindow.setTitleActions(actionList);
     }
 
-    private Content getContent(String key, Content chatgpt ,
-                                 Content gpt35Turbo,
-                                 Content browser) {
+    private Content getContent(String key, Content chatgpt,
+                               Content gpt35Turbo,
+                               Content browser) {
         if (CHATGPT_CONTENT_NAME.equals(key)) {
             return chatgpt;
         } else if (GPT35_TRUBO_CONTENT_NAME.equals(key)) {
