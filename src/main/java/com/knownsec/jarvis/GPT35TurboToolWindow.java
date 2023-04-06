@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-
+import javax.swing.JPanel;
 
 /**
  * @author zouyx
@@ -33,7 +33,7 @@ public class GPT35TurboToolWindow {
      * rapidly get input focus by keystorke f key
      */
     public void registerKeystrokeFocus() {
-        JTextArea myTextArea = panel.getSearchTextArea().getTextArea();
+        @NotNull JTextArea myTextArea = panel.getSearchTextArea().getTextArea();
         myTextArea.setFocusable(true);
         Action focusAction = new AbstractAction() {
             @Override
