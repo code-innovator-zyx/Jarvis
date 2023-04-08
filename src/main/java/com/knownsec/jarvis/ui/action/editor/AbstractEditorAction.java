@@ -42,7 +42,6 @@ public abstract class AbstractEditorAction extends AnAction {
 
         // Check the toolWindow is active
         ToolWindow chatGPT = ToolWindowManager.getInstance(e.getProject()).getToolWindow("ChatGPT");
-//        assert chatGPT != null;
         if (chatGPT == null) {
             Notify("我暂时无法为您提供服务，您还没有激活贾维斯系统", MessageType.WARNING);
             return;

@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * @author zouyx
+ * 自定义操作
  */
 public class CustomAction extends AbstractEditorAction {
 
@@ -32,19 +33,19 @@ public class CustomAction extends AbstractEditorAction {
             doActionPerformed(e);
         };
 
-        ListPopup actionGroupPopup = JBPopupFactory.getInstance().createActionGroupPopup("Custom Action Popups",
-                new CustomPrefixActionGroup(runnable), e.getDataContext(), true, null, Integer.MAX_VALUE);
+        ListPopup actionGroupPopup = JBPopupFactory.getInstance().createActionGroupPopup("Custom Action Popups", new CustomPrefixActionGroup(runnable), e.getDataContext(), true, null, Integer.MAX_VALUE);
         actionGroupPopup.showInBestPositionFor(e.getData(CommonDataKeys.EDITOR));
     }
 
     static class CustomPrefixActionGroup extends ActionGroup {
         private final Runnable runnable;
+
         public CustomPrefixActionGroup(Runnable runnable) {
             initialization();
             this.runnable = runnable;
         }
 
-        private List<AnAction> initialization(){
+        private List<AnAction> initialization() {
             List<AnAction> anActionList = new ArrayList<>();
             anActionList.add(new AddCustomAction(runnable));
             anActionList.add(new Separator());
@@ -65,11 +66,13 @@ public class CustomAction extends AbstractEditorAction {
 
         private final Runnable runnable;
         private final String prefix;
+
         public CustomActionItem(String prefix, Runnable runnable) {
             super(() -> prefix, ChatGPTIcons.TOOL_WINDOW);
             this.runnable = runnable;
             this.prefix = prefix;
         }
+
         @Override
         public void actionPerformed(@NotNull AnActionEvent e) {
             e.getProject().putUserData(ACTIVE_PREFIX, prefix);

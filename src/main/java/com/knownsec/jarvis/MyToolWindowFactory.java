@@ -47,6 +47,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         gpt35Turbo.setCloseable(false);
         // get input focus by keystroke
         gpt35TurboToolWindow.registerKeystrokeFocus();
+
         BrowserToolWindow browserToolWindow = new BrowserToolWindow();
         Content browser = contentFactory.createContent(browserToolWindow.getContent(),
                 ONLINE_CHATGPT_CONTENT_NAME, false);
