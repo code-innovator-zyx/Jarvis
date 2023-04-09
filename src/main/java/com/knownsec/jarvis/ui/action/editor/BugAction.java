@@ -7,6 +7,7 @@ import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.MessageType;
 import com.knownsec.jarvis.message.ChatGPTBundle;
+import com.knownsec.jarvis.util.JarvisUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -20,10 +21,8 @@ public class BugAction extends AbstractEditorAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        key = "Find the bug in the code below:";
-//        NotificationGroup notificationGroup = new NotificationGroup("find bug", NotificationDisplayType.BALLOON, true);
-//        Notification notification = notificationGroup.createNotification("好吧，我帮你review一下这段代码。", MessageType.INFO);
-//        Notifications.Bus.notify(notification);
+        key = "帮我找一下下面这段代码的bug:";
+        JarvisUtil.Notify("好吧，我帮你review一下这段代码。", MessageType.INFO);
         super.actionPerformed(e);
     }
 

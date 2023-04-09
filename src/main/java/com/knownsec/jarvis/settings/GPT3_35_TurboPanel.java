@@ -18,6 +18,14 @@ import java.awt.event.ItemListener;
 
 /**
  * @author zouyx
+ * TODO
+ * jarvis-4
+ * jarvis-4-0314
+ * jarvis-4-32k
+ * jarvis-4-32k-0314
+ * text-davinci-003
+ * text-davinci-002
+ * code-davinci-002
  */
 public class GPT3_35_TurboPanel implements Configurable, Disposable {
     private JPanel myMainPanel;

@@ -28,6 +28,7 @@ public abstract class AbstractEditorAction extends AnAction {
 
     protected String text = "";
     protected String key = "";
+    protected String windowName = "Jarvis";
 
     public AbstractEditorAction(@NotNull Supplier<@NlsActions.ActionText String> dynamicText) {
         super(dynamicText);
@@ -41,13 +42,13 @@ public abstract class AbstractEditorAction extends AnAction {
     public void doActionPerformed(@NotNull AnActionEvent e) {
 
         // Check the toolWindow is active
-        ToolWindow chatGPT = ToolWindowManager.getInstance(e.getProject()).getToolWindow("ChatGPT");
-        if (chatGPT == null) {
+        ToolWindow jarvis = ToolWindowManager.getInstance(e.getProject()).getToolWindow(windowName);
+        if (jarvis == null) {
             Notify("我暂时无法为您提供服务，您还没有激活贾维斯系统", MessageType.WARNING);
             return;
         }
-        if (!chatGPT.isActive()) {
-            chatGPT.activate(null);
+        if (!jarvis.isActive()) {
+            jarvis.activate(null);
         }
 
         Editor editor = e.getData(CommonDataKeys.EDITOR);

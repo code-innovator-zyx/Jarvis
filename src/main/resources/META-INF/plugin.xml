@@ -50,9 +50,13 @@
         <group id="Jarvis" text="Help with Jarvis"
                description="Describe what you would like Jarvis to do for you">
             <action id="WrongAction" icon="/icons/toolWindow.svg"
-                    class="com.knownsec.jarvis.ui.action.editor.BugAction"/>
+                    class="com.knownsec.jarvis.ui.action.editor.BugAction">
+                <keyboard-shortcut keymap="$default" first-keystroke="meta B"/>
+            </action>
             <action id="OptimizeAction" class="com.knownsec.jarvis.ui.action.editor.OptimizeAction"
-                    icon="/icons/toolWindow.svg"/>
+                    icon="/icons/toolWindow.svg">
+                <keyboard-shortcut keymap="$default" first-keystroke="meta O"/>
+            </action>
             <action id="CustomAction" icon="/icons/toolWindow.svg"
                     class="com.knownsec.jarvis.ui.action.editor.CustomAction">
                 <keyboard-shortcut keymap="$default" first-keystroke="control shift Q"/>
