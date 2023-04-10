@@ -65,7 +65,19 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
             JPanel rolePanel = new NonOpaquePanel(new BorderLayout());
             systemRole = new JBTextField();
             OpenAISettingsState instance = OpenAISettingsState.getInstance();
-            systemRole.getEmptyText().setText(systemRoleText);
+            systemRole.setText(instance.gpt35RoleText);
+            systemRole.setEnabled(false);
+            systemRole.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    systemRole.setEnabled(true);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    systemRole.setEnabled(false);
+                }
+            });
             rolePanel.add(systemRole, BorderLayout.CENTER);
             DefaultActionGroup toolbarActions = new DefaultActionGroup();
             toolbarActions.add(new AnAction(AllIcons.Actions.MenuSaveall) {

@@ -1,6 +1,6 @@
 package com.knownsec.jarvis.ui.action.editor;
 
-import com.intellij.openapi.actionSystem.AnAction;
+
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.MessageType;
 import com.knownsec.jarvis.message.ChatGPTBundle;

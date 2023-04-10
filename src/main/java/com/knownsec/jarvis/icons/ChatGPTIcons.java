@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public class ChatGPTIcons {
 
-    public static final Icon ME = IconLoader.getIcon("/images/me.png",ChatGPTIcons.class);
+    public static final Icon ME = IconLoader.getIcon("/images/zyx.png",ChatGPTIcons.class);
 
     public static final Icon AI = IconLoader.getIcon("/images/ai.png",ChatGPTIcons.class);
 

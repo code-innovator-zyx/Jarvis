@@ -49,14 +49,6 @@
     <actions>
         <group id="Jarvis" text="Help with Jarvis"
                description="Describe what you would like Jarvis to do for you">
-            <!--            <action id="WrongAction" icon="/icons/toolWindow.svg"-->
-            <!--                    class="com.knownsec.jarvis.ui.action.editor.BugAction">-->
-            <!--                <keyboard-shortcut keymap="$default" first-keystroke="meta B"/>-->
-            <!--            </action>-->
-            <!--            <action id="OptimizeAction" class="com.knownsec.jarvis.ui.action.editor.OptimizeAction"-->
-            <!--                    icon="/icons/toolWindow.svg">-->
-            <!--                <keyboard-shortcut keymap="$default" first-keystroke="meta O"/>-->
-            <!--            </action>-->
             <action id="CustomAction" icon="/icons/toolWindow.svg"
                     class="com.knownsec.jarvis.ui.action.editor.CustomAction">
                 <keyboard-shortcut keymap="$default" first-keystroke="control shift Q"/>
@@ -65,21 +57,16 @@
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <separator/>
         </group>
-        <action id="HelloJarvis" class="com.knownsec.jarvis.HelloJarvis"
-                text="Call Up Jarvis"
-                description="Wake up Jarvis">
+
+        <action id="FindBug" class="com.knownsec.jarvis.ui.action.editor.FindBug" text="FindBug"
+                description="Find the bug">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <keyboard-shortcut keymap="$default" first-keystroke="meta Q"/>
         </action>
         <action id="Optimize" class="com.knownsec.jarvis.ui.action.editor.Optimize" text="Optimize"
                 description="Optimize the code">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="meta O"/>
-        </action>
-        <action id="FindBug" class="com.knownsec.jarvis.ui.action.editor.FindBug" text="FindBug"
-                description="Find the bug">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="meta I"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta W"/>
         </action>
     </actions>
 </idea-plugin>

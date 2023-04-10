@@ -13,6 +13,8 @@ import com.knownsec.jarvis.icons.ChatGPTIcons;
 import com.knownsec.jarvis.settings.OpenAISettingsState;
 import com.knownsec.jarvis.util.ImgUtils;
 import com.knownsec.jarvis.util.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.accessibility.AccessibleContext;
 import javax.swing.*;
@@ -27,6 +29,7 @@ import java.util.List;
  * @author zouyx
  */
 public class MessageComponent extends JBPanel<MessageComponent> {
+    private static final Logger LOG = LoggerFactory.getLogger(MessageComponent.class);
 
     private final MessagePanel component = new MessagePanel();
 
@@ -48,12 +51,13 @@ public class MessageComponent extends JBPanel<MessageComponent> {
             JPanel iconPanel = new JPanel(new BorderLayout());
             iconPanel.setOpaque(false);
             Image imageIcon;
-            try {
-                String url = OpenAISettingsState.getInstance().imageUrl;
-                imageIcon = me ? ImgUtils.getImage(new URL(url)) : ImgUtils.iconToImage(ChatGPTIcons.OPEN_AI);
-            } catch (Exception e) {
-                imageIcon = me ? ImgUtils.iconToImage(ChatGPTIcons.ME) : ImgUtils.iconToImage(ChatGPTIcons.AI);
-            }
+//            try {
+//                String url = OpenAISettingsState.getInstance().imageUrl;
+//                imageIcon = me ? ImgUtils.getImage(new URL(url)) : ImgUtils.iconToImage(ChatGPTIcons.OPEN_AI);
+//            } catch (Exception e) {
+//                imageIcon = me ? ImgUtils.iconToImage(ChatGPTIcons.ME) : ImgUtils.iconToImage(ChatGPTIcons.AI);
+//            }
+            imageIcon = me ? ImgUtils.iconToImage(ChatGPTIcons.ME) : ImgUtils.iconToImage(ChatGPTIcons.AI);
             Image scale = ImgUtil.scale(imageIcon, 30, 30);
             iconPanel.add(new JBLabel(new ImageIcon(scale)), BorderLayout.NORTH);
             add(iconPanel, BorderLayout.WEST);
@@ -109,10 +113,8 @@ public class MessageComponent extends JBPanel<MessageComponent> {
     }
 
     public void setContent(String content) {
-        SwingUtilities.invokeLater(() -> {
-            component.updateMessage(content);
-            component.updateUI();
-        });
+        new MessageWorker(content).execute();
+
     }
 
     public void setSourceContent(String source) {
@@ -132,9 +134,34 @@ public class MessageComponent extends JBPanel<MessageComponent> {
 
     public String prevAnswers() {
         StringBuilder result = new StringBuilder();
-        for (String s : answers){
+        for (String s : answers) {
             result.append(s);
         }
         return result.toString();
+    }
+
+    class MessageWorker extends SwingWorker<Void, String> {
+        private final String message;
+
+        public MessageWorker(String message) {
+            this.message = message;
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception {
+            return null;
+        }
+
+        @Override
+        protected void done() {
+            try {
+                get();
+                component.updateMessage(message);
+                component.updateUI();
+            } catch (Exception e) {
+                LOG.error("ChatGPT Exception in processing response: response:{} error: {}", message, e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 }

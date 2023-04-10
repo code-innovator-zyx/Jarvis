@@ -12,6 +12,7 @@ import com.intellij.openapi.wm.ToolWindowManager;
 import com.knownsec.jarvis.core.SendAction;
 import com.knownsec.jarvis.ui.BrowserContent;
 import com.knownsec.jarvis.ui.MainPanel;
+import com.knownsec.jarvis.util.JarvisUtil;
 import com.knownsec.jarvis.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -64,15 +65,13 @@ public abstract class AbstractEditorAction extends AnAction {
             resetUserData(e);
         }
 
-        // Browser text does not require code blocks
+
         String browserText = key + "\n" + selectedText;
         String apiText = key + "\n" + "<pre><code>" + selectedText + "</code></pre>";
 
         SendAction sendAction = e.getProject().getService(SendAction.class);
         Object mainPanel = e.getProject().getUserData(ACTIVE_CONTENT);
 
-        // If the Online Chat GPT mode is currently selected, the selected
-        // code needs to be processed with Cef Browser
         if (mainPanel instanceof BrowserContent) {
             ((BrowserContent) mainPanel).execute(browserText);
             return;
@@ -91,7 +90,10 @@ public abstract class AbstractEditorAction extends AnAction {
     @Override
     public void update(@NotNull AnActionEvent e) {
         Editor editor = e.getData(CommonDataKeys.EDITOR);
-        assert editor != null;
+        if (editor == null) {
+            JarvisUtil.Notify("请先选中相应代码块", MessageType.WARNING);
+            return;
+        }
         boolean hasSelection = editor.getSelectionModel().hasSelection();
         e.getPresentation().setEnabledAndVisible(hasSelection);
     }
