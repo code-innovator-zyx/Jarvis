@@ -2,6 +2,7 @@ package com.knownsec.jarvis.ui.action;
 
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.BrowserUtil;
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.ActionGroup;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -57,7 +58,7 @@ public class HelpAction extends DumbAwareAction {
         public void actionPerformed(@NotNull AnActionEvent e) {
 //      BrowserUtil.browse("https://chatgpt.en.obiscr.com");
             // TODO: insert action logic here
-            JarvisUtil.Notify("嘛也不懂，自己想办法解决........", MessageType.INFO);
+            JarvisUtil.Notify("嘛也不懂，自己想办法解决........", NotificationType.INFORMATION);
         }
     }
 
@@ -69,7 +70,7 @@ public class HelpAction extends DumbAwareAction {
         @Override
         public void actionPerformed(@NotNull AnActionEvent e) {
             // TODO: insert action logic here
-            JarvisUtil.Notify("作甚、作甚，你贾维斯大爷在此！有啥问题么", MessageType.INFO);
+            JarvisUtil.Notify("作甚、作甚，你贾维斯大爷在此！有啥问题么", NotificationType.INFORMATION);
 //      BrowserUtil.browse("https://github.com/dromara/ChatGPT/discussions/categories/announcements");
         }
     }

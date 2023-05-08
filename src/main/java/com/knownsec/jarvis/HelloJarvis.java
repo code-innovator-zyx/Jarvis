@@ -1,5 +1,6 @@
 package com.knownsec.jarvis;
 
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.MessageType;
@@ -17,6 +18,6 @@ public class HelloJarvis extends AnAction {
         // TODO: insert action logic here
         Random random = new Random();
         int index = random.nextInt(messages.length);
-        JarvisUtil.Notify(messages[index], MessageType.INFO);
+        JarvisUtil.Notify(messages[index], NotificationType.INFORMATION);
     }
 }

@@ -15,6 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * @author zouyx
@@ -43,7 +45,7 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
     private JTextField customizeServerField;
     private BrowserLink customizeServerHelpLabel;
     private JPanel customizeServerOptions;
-
+    private final HashMap<String, String> modelMapping = new HashMap<>();
 
     public GPT3_35_TurboPanel() {
         init();
@@ -60,6 +62,8 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
         };
         enableCustomizeGpt35TurboUrlCheckBox.addItemListener(proxyTypeChangedListener);
         enableCustomizeServerOptions(false);
+        modelMapping.put("jarvis-3.5-turbo-0301", "gpt-3.5-turbo-0301");
+        modelMapping.put("jarvis-3.5-turbo", "gpt-3.5-turbo");
         initHelp();
     }
 
@@ -89,7 +93,7 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
         OpenAISettingsState state = OpenAISettingsState.getInstance();
 
         return !state.apiKey.equals(apiKeyField.getText()) ||
-                !state.gpt35Model.equals(comboCombobox.getSelectedItem().toString()) ||
+                !state.gpt35Model.equals(modelMapping.get(comboCombobox.getSelectedItem().toString())) ||
                 !state.enableContext == enableContextCheckBox.isSelected() ||
                 !state.enableTokenConsumption == enableTokenConsumptionCheckBox.isSelected() ||
                 !state.enableGPT35StreamResponse == enableStreamResponseCheckBox.isSelected() ||
@@ -101,7 +105,7 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
     public void apply() {
         OpenAISettingsState state = OpenAISettingsState.getInstance();
         state.apiKey = apiKeyField.getText();
-        state.gpt35Model = comboCombobox.getSelectedItem().toString();
+        state.gpt35Model = modelMapping.get(comboCombobox.getSelectedItem().toString());
         state.enableContext = enableContextCheckBox.isSelected();
         state.enableTokenConsumption = enableTokenConsumptionCheckBox.isSelected();
         state.enableGPT35StreamResponse = enableStreamResponseCheckBox.isSelected();

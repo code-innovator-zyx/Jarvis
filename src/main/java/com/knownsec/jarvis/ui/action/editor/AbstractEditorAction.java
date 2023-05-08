@@ -1,5 +1,6 @@
 package com.knownsec.jarvis.ui.action.editor;
 
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
@@ -45,7 +46,7 @@ public abstract class AbstractEditorAction extends AnAction {
         // Check the toolWindow is active
         ToolWindow jarvis = ToolWindowManager.getInstance(e.getProject()).getToolWindow(windowName);
         if (jarvis == null) {
-            Notify("我暂时无法为您提供服务，您还没有激活贾维斯系统", MessageType.WARNING);
+            Notify("我暂时无法为您提供服务，您还没有激活贾维斯系统", NotificationType.WARNING);
             return;
         }
         if (!jarvis.isActive()) {
@@ -91,7 +92,7 @@ public abstract class AbstractEditorAction extends AnAction {
     public void update(@NotNull AnActionEvent e) {
         Editor editor = e.getData(CommonDataKeys.EDITOR);
         if (editor == null) {
-            JarvisUtil.Notify("请先选中相应代码块", MessageType.WARNING);
+            JarvisUtil.Notify("请先选中相应代码块", NotificationType.WARNING);
             return;
         }
         boolean hasSelection = editor.getSelectionModel().hasSelection();

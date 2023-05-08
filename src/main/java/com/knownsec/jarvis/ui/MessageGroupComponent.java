@@ -113,7 +113,7 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
 
         panel.add(myTitle, BorderLayout.WEST);
 
-        LinkLabel<String> newChat = new LinkLabel<>("New chat", null);
+        LinkLabel<String> newChat = new LinkLabel<>("Clear", null);
         newChat.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

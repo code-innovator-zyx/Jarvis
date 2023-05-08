@@ -1,5 +1,6 @@
 package com.knownsec.jarvis.ui.action.editor;
 
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.MessageType;
 import com.knownsec.jarvis.message.ChatGPTBundle;
@@ -15,7 +16,7 @@ public class FindBug extends AbstractEditorAction {
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
         key = "帮我找一下下面这段代码的bug:";
-        JarvisUtil.Notify("好吧，我帮你review一下这段代码。", MessageType.INFO);
+        JarvisUtil.Notify("好吧，我帮你review一下这段代码。", NotificationType.INFORMATION);
         super.actionPerformed(e);
     }
 }

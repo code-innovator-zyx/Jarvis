@@ -324,8 +324,8 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
         contentTitledBorderBox.add(tsUrl, BorderLayout.CENTER);
 
         openaiAssistantTitledBorderBox = new JPanel(new BorderLayout());
-        TitledSeparator oaUrl = new TitledSeparator("OpenAI Assistant");
-        openaiAssistantTitledBorderBox.add(oaUrl, BorderLayout.CENTER);
+//        TitledSeparator oaUrl = new TitledSeparator("OpenAI Assistant");
+//        openaiAssistantTitledBorderBox.add(oaUrl, BorderLayout.CENTER);
 
 
         supportPanel = new JPanel(new BorderLayout());
