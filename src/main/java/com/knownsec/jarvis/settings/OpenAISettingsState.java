@@ -52,8 +52,6 @@ public class OpenAISettingsState implements PersistentStateComponent<OpenAISetti
     public String apiKey = "";
     public Map<Integer, String> contentOrder = new HashMap<>() {{
         put(1, GPT35_TRUBO_CONTENT_NAME);
-        put(2, CHATGPT_CONTENT_NAME);
-        put(3, ONLINE_CHATGPT_CONTENT_NAME);
     }};
 
     public Boolean enableLineWarp = true;

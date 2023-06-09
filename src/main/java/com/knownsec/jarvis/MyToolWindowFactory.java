@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author zouyx
@@ -49,17 +50,13 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         gpt35TurboToolWindow.registerKeystrokeFocus();
 
         BrowserToolWindow browserToolWindow = new BrowserToolWindow();
-        Content browser = contentFactory.createContent(browserToolWindow.getContent(),
-                ONLINE_CHATGPT_CONTENT_NAME, false);
+        Content browser = contentFactory.createContent(browserToolWindow.getContent(), ONLINE_CHATGPT_CONTENT_NAME, false);
         browser.setCloseable(false);
 
         OpenAISettingsState settingsState = OpenAISettingsState.getInstance();
         Map<Integer, String> contentSort = settingsState.contentOrder;
 
-        for (int i = 0; i <= 2; i++) {
-            toolWindow.getContentManager().addContent(getContent(contentSort.get(i + 1), chatGpt,
-                    gpt35Turbo, browser), i);
-        }
+        toolWindow.getContentManager().addContent(getContent(contentSort.get(1), chatGpt, gpt35Turbo, browser), 0);
 
 
         // Set the default component. It require the 1st container
@@ -102,9 +99,7 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         toolWindow.setTitleActions(actionList);
     }
 
-    private Content getContent(String key, Content chatgpt,
-                               Content gpt35Turbo,
-                               Content browser) {
+    private Content getContent(String key, Content chatgpt, Content gpt35Turbo, Content browser) {
         if (CHATGPT_CONTENT_NAME.equals(key)) {
             return chatgpt;
         } else if (GPT35_TRUBO_CONTENT_NAME.equals(key)) {

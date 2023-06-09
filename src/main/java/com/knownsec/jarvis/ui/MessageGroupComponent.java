@@ -59,47 +59,47 @@ public class MessageGroupComponent extends JBPanel<MessageGroupComponent> implem
         mainPanel.setOpaque(false);
         mainPanel.setBorder(JBUI.Borders.emptyLeft(8));
 
-        if (!isChatGPT) {
-            JPanel panel = new NonOpaquePanel(new GridLayout(2, 1));
-            panel.add(new JBLabel(" 玩角色扮演么😯: 我可以成为任何你想让我成为的角色"));
-            JPanel rolePanel = new NonOpaquePanel(new BorderLayout());
-            systemRole = new JBTextField();
-            OpenAISettingsState instance = OpenAISettingsState.getInstance();
-            systemRole.setText(instance.gpt35RoleText);
-            systemRole.setEnabled(false);
-            systemRole.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    systemRole.setEnabled(true);
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    systemRole.setEnabled(false);
-                }
-            });
-            rolePanel.add(systemRole, BorderLayout.CENTER);
-            DefaultActionGroup toolbarActions = new DefaultActionGroup();
-            toolbarActions.add(new AnAction(AllIcons.Actions.MenuSaveall) {
-                @Override
-                public void actionPerformed(@NotNull AnActionEvent e) {
-                    instance.gpt35RoleText = systemRole.getText().isEmpty() ? systemRoleText : systemRole.getText();
-                }
-            });
-            toolbarActions.add(new AnAction(AllIcons.Actions.Rollback) {
-                @Override
-                public void actionPerformed(@NotNull AnActionEvent e) {
-                    systemRole.setText(systemRoleText);
-                    instance.gpt35RoleText = systemRoleText;
-                }
-            });
-            ActionToolbarImpl actonPanel = new ActionToolbarImpl("System Role Toolbar", toolbarActions, true);
-            actonPanel.setTargetComponent(this);
-            rolePanel.add(actonPanel, BorderLayout.EAST);
-            panel.add(rolePanel);
-            panel.setBorder(JBUI.Borders.empty(0, 8, 10, 10));
-            add(panel, BorderLayout.NORTH);
-        }
+//        if (!isChatGPT) {
+//            JPanel panel = new NonOpaquePanel(new GridLayout(2, 1));
+//            panel.add(new JBLabel(" 玩角色扮演么😯: 我可以成为任何你想让我成为的角色"));
+//            JPanel rolePanel = new NonOpaquePanel(new BorderLayout());
+//            systemRole = new JBTextField();
+//            OpenAISettingsState instance = OpenAISettingsState.getInstance();
+//            systemRole.setText(instance.gpt35RoleText);
+//            systemRole.setEnabled(false);
+//            systemRole.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mouseEntered(MouseEvent e) {
+//                    systemRole.setEnabled(true);
+//                }
+//
+//                @Override
+//                public void mouseExited(MouseEvent e) {
+//                    systemRole.setEnabled(false);
+//                }
+//            });
+//            rolePanel.add(systemRole, BorderLayout.CENTER);
+//            DefaultActionGroup toolbarActions = new DefaultActionGroup();
+//            toolbarActions.add(new AnAction(AllIcons.Actions.MenuSaveall) {
+//                @Override
+//                public void actionPerformed(@NotNull AnActionEvent e) {
+//                    instance.gpt35RoleText = systemRole.getText().isEmpty() ? systemRoleText : systemRole.getText();
+//                }
+//            });
+//            toolbarActions.add(new AnAction(AllIcons.Actions.Rollback) {
+//                @Override
+//                public void actionPerformed(@NotNull AnActionEvent e) {
+//                    systemRole.setText(systemRoleText);
+//                    instance.gpt35RoleText = systemRoleText;
+//                }
+//            });
+//            ActionToolbarImpl actonPanel = new ActionToolbarImpl("System Role Toolbar", toolbarActions, true);
+//            actonPanel.setTargetComponent(this);
+//            rolePanel.add(actonPanel, BorderLayout.EAST);
+//            panel.add(rolePanel);
+//            panel.setBorder(JBUI.Borders.empty(0, 8, 10, 10));
+//            add(panel, BorderLayout.NORTH);
+//        }
 
         add(mainPanel, BorderLayout.CENTER);
 

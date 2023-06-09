@@ -43,7 +43,6 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
     private JPanel urlTitledBox;
     private JCheckBox enableCustomizeGpt35TurboUrlCheckBox;
     private JTextField customizeServerField;
-    private BrowserLink customizeServerHelpLabel;
     private JPanel customizeServerOptions;
     private final HashMap<String, String> modelMapping = new HashMap<>();
 
@@ -134,8 +133,6 @@ public class GPT3_35_TurboPanel implements Configurable, Disposable {
         urlTitledBox = new JPanel(new BorderLayout());
         TitledSeparator url = new TitledSeparator("Server Settings");
         urlTitledBox.add(url, BorderLayout.CENTER);
-
-        customizeServerHelpLabel = new BrowserLink("https://chatgpt.en.obiscr.com/settings/gpt-3.5-trubo-settings/#server-settings");
     }
 
     private void initHelp() {

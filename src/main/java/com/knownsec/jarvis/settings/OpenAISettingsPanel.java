@@ -169,8 +169,6 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
         proxyPasswordField.setText(state.proxyPassword);
 
         firstCombobox.setSelectedItem(state.contentOrder.get(1));
-        secondCombobox.setSelectedItem(state.contentOrder.get(2));
-        thirdCombobox.setSelectedItem(state.contentOrder.get(3));
 
         enableLineWarpCheckBox.setSelected(state.enableLineWarp);
         assistantApiKey.setText(state.assistantApiKey);
